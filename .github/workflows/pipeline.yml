@@ -1,0 +1,28 @@
+name: Build Students Registry CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build Checkout
+    - uses: actions/checkout@v4
+    - name: Use Node.js 20.x
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Run Node.js
+    - run: npm install
+    - name: Start the app
+    - run: npm start
+    - run: npm run build
+    - name: Run tests
+    - run: npm run test
