@@ -10,18 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Build Checkout
+    - name: Checkout the repository
       uses: actions/checkout@v4
     - name: Use Node.js 20.x
       uses: actions/setup-node@v4
       with:
         node-version: 20.x
         cache: 'npm'
-    - name: Install dependencies
+    - name: install npm dependencies
       run: npm install
-    - name: Start the app
-      run: npm start
-    - name: Run tests
+    - name: Run Unit tests
       run: npm run test
   deploy:
     needs: build
